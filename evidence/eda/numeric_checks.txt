@@ -1,0 +1,20 @@
+Sample size: 10,000 rows from first 10 Parquet files
+Selection: first 1,000 rows per file
+
+Correlations:
+                      speed_limit  number_of_vehicles  number_of_casualties  collision_severity
+speed_limit                 1.000               0.097                 0.174              -0.119
+number_of_vehicles          0.097               1.000                 0.226               0.062
+number_of_casualties        0.174               0.226                 1.000              -0.141
+collision_severity         -0.119               0.062                -0.141               1.000
+
+Missing values:
+speed_limit             0
+number_of_vehicles      0
+number_of_casualties    0
+collision_severity      0
+
+Unusual values:
+Speed limits outside 0–70 mph: 0
+Nonpositive vehicle counts: 0
+Nonpositive casualty counts: 0

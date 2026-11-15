@@ -1,0 +1,183 @@
+{
+  "version": "processed_v1",
+  "primary_key": "collision_index",
+  "target": "collision_severity",
+  "columns": [
+    {
+      "name": "collision_index",
+      "type": "large_string"
+    },
+    {
+      "name": "collision_year",
+      "type": "int64"
+    },
+    {
+      "name": "collision_ref_no",
+      "type": "large_string"
+    },
+    {
+      "name": "location_easting_osgr",
+      "type": "large_string"
+    },
+    {
+      "name": "location_northing_osgr",
+      "type": "large_string"
+    },
+    {
+      "name": "longitude",
+      "type": "double"
+    },
+    {
+      "name": "latitude",
+      "type": "double"
+    },
+    {
+      "name": "police_force",
+      "type": "large_string"
+    },
+    {
+      "name": "collision_severity",
+      "type": "int64"
+    },
+    {
+      "name": "number_of_vehicles",
+      "type": "large_string"
+    },
+    {
+      "name": "number_of_casualties",
+      "type": "large_string"
+    },
+    {
+      "name": "date",
+      "type": "timestamp[us]"
+    },
+    {
+      "name": "day_of_week",
+      "type": "large_string"
+    },
+    {
+      "name": "time",
+      "type": "large_string"
+    },
+    {
+      "name": "local_authority_district",
+      "type": "large_string"
+    },
+    {
+      "name": "local_authority_ons_district",
+      "type": "large_string"
+    },
+    {
+      "name": "local_authority_highway",
+      "type": "large_string"
+    },
+    {
+      "name": "local_authority_highway_current",
+      "type": "large_string"
+    },
+    {
+      "name": "first_road_class",
+      "type": "large_string"
+    },
+    {
+      "name": "first_road_number",
+      "type": "large_string"
+    },
+    {
+      "name": "road_type",
+      "type": "large_string"
+    },
+    {
+      "name": "speed_limit",
+      "type": "int64"
+    },
+    {
+      "name": "junction_detail_historic",
+      "type": "large_string"
+    },
+    {
+      "name": "junction_detail",
+      "type": "large_string"
+    },
+    {
+      "name": "junction_control",
+      "type": "large_string"
+    },
+    {
+      "name": "second_road_class",
+      "type": "large_string"
+    },
+    {
+      "name": "second_road_number",
+      "type": "large_string"
+    },
+    {
+      "name": "pedestrian_crossing_human_control_historic",
+      "type": "large_string"
+    },
+    {
+      "name": "pedestrian_crossing_physical_facilities_historic",
+      "type": "large_string"
+    },
+    {
+      "name": "pedestrian_crossing",
+      "type": "large_string"
+    },
+    {
+      "name": "light_conditions",
+      "type": "large_string"
+    },
+    {
+      "name": "weather_conditions",
+      "type": "large_string"
+    },
+    {
+      "name": "road_surface_conditions",
+      "type": "large_string"
+    },
+    {
+      "name": "special_conditions_at_site",
+      "type": "large_string"
+    },
+    {
+      "name": "carriageway_hazards_historic",
+      "type": "large_string"
+    },
+    {
+      "name": "carriageway_hazards",
+      "type": "large_string"
+    },
+    {
+      "name": "urban_or_rural_area",
+      "type": "large_string"
+    },
+    {
+      "name": "did_police_officer_attend_scene_of_accident",
+      "type": "large_string"
+    },
+    {
+      "name": "trunk_road_flag",
+      "type": "large_string"
+    },
+    {
+      "name": "lsoa_of_accident_location",
+      "type": "large_string"
+    },
+    {
+      "name": "enhanced_severity_collision",
+      "type": "large_string"
+    },
+    {
+      "name": "collision_injury_based",
+      "type": "large_string"
+    },
+    {
+      "name": "collision_adjusted_severity_serious",
+      "type": "large_string"
+    },
+    {
+      "name": "collision_adjusted_severity_slight",
+      "type": "large_string"
+    }
+  ]
+}

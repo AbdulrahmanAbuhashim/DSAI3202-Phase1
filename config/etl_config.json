@@ -1,0 +1,27 @@
+{
+  "project": "road-accident-severity",
+  "source_version": "source_v1",
+  "output_version": "processed_v1",
+  "input_csv": "/home/azureuser/dft-road-casualty-statistics-collision-1979-latest-published-year.csv",
+  "storage_account": "amazonlake60301190",
+  "raw_container": "raw",
+  "processed_container": "processed",
+  "batch_size": 50000,
+  "required_columns": [
+    "collision_index",
+    "collision_year",
+    "collision_severity",
+    "date",
+    "time",
+    "speed_limit",
+    "road_type",
+    "weather_conditions",
+    "light_conditions",
+    "road_surface_conditions",
+    "longitude",
+    "latitude"
+  ],
+  "valid_severity_codes": [1, 2, 3],
+  "maximum_rejected_fraction": 0.01,
+  "preserve_missing_coordinates": true
+}
