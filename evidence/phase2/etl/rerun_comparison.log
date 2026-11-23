@@ -1,0 +1,4 @@
+part_00000.parquet - MATCH
+rejected/invalid_00000.parquet - MATCH
+rejected/duplicates_00000.parquet - MATCH
+RERUN VERIFICATION PASSED

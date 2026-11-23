@@ -1,0 +1,10 @@
+Batch 1: 500 records processed, 496 accepted, 4 rejected
+=== ETL RUN RESULTS ===
+Input rows: 500
+Accepted rows: 496
+Rejected rows: 4
+Duplicate rows: 1
+Rejection rate: 0.80%
+Quality gate: PASSED
+Publication: SUCCESS
+Output: /Users/abdulrahman/DSAI3202-Phase1/outputs/phase2_rejected_test_02
