@@ -1,0 +1,11 @@
+Training Extra Trees...
+Validation accuracy: 0.675
+Validation macro F1: 0.366
+Fatal F1: 0.0717
+Fatal Recall: 0.132
+Serious F1: 0.2226
+Serious Recall: 0.1994
+Slight F1: 0.8035
+Slight Recall: 0.8113
+Extra Trees model saved
+EXTRA TREES EXPERIMENT COMPLETED
