@@ -1,0 +1,21 @@
+{
+  "model": "Extra Trees",
+  "algorithm": "ExtraTreesClassifier",
+  "data_version": "features_v1",
+  "training_rows": 420386,
+  "validation_rows": 20713,
+  "validation_accuracy": 0.675,
+  "validation_macro_f1": 0.366,
+  "fatal_f1": 0.0717,
+  "serious_f1": 0.2226,
+  "serious_recall": 0.1994,
+  "random_state": 42,
+  "n_estimators": 150,
+  "min_samples_leaf": 5,
+  "max_features": 0.8,
+  "class_weight": "balanced",
+  "original_size_mb": 1185.6,
+  "compressed_size_mb": 362.9,
+  "compression_prediction_matches": "20713/20713",
+  "evaluation": "Validation only; no untouched final test"
+}

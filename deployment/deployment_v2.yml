@@ -1,0 +1,16 @@
+$schema: https://azuremlschemas.azureedge.net/latest/managedOnlineDeployment.schema.json
+name: green
+endpoint_name: accident-severity-60301190
+
+model: azureml:road-accident-severity:2
+
+code_configuration:
+  code: .
+  scoring_script: score_v2.py
+
+environment:
+  image: mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu22.04:latest
+  conda_file: conda.yml
+
+instance_type: Standard_DS3_v2
+instance_count: 1
