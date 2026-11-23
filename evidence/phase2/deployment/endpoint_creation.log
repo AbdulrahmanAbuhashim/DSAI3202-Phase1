@@ -1,0 +1,27 @@
+{
+  "auth_mode": "key",
+  "id": "/subscriptions/0b475409-9d7c-4dff-a07b-084eff651874/resourceGroups/rg-dsai3202-abdulrahman-60301190/providers/Microsoft.MachineLearningServices/workspaces/mlwdsai320260301190/onlineEndpoints/accident-severity-60301190",
+  "identity": {
+    "principal_id": "27dfd938-f158-473b-a3c3-d6d11649c94b",
+    "tenant_id": "b30f4b44-46c6-4070-9997-f87b38d4771c",
+    "type": "system_assigned"
+  },
+  "kind": "Managed",
+  "location": "qatarcentral",
+  "mirror_traffic": {},
+  "name": "accident-severity-60301190",
+  "openapi_uri": "https://accident-severity-60301190.qatarcentral.inference.ml.azure.com/swagger.json",
+  "properties": {
+    "AzureAsyncOperationUri": "https://management.azure.com/subscriptions/0b475409-9d7c-4dff-a07b-084eff651874/providers/Microsoft.MachineLearningServices/locations/qatarcentral/mfeOperationsStatus/oeidp:ae2af604-e2f3-46ad-8bc9-a0b6a6e65b54:7d4d6d12-69f6-49f9-9c20-644fdc3ce9c7?api-version=2022-02-01-preview",
+    "azureml.onlineendpointid": "/subscriptions/0b475409-9d7c-4dff-a07b-084eff651874/resourcegroups/rg-dsai3202-abdulrahman-60301190/providers/microsoft.machinelearningservices/workspaces/mlwdsai320260301190/onlineendpoints/accident-severity-60301190",
+    "createdAt": "2026-11-23T17:48:41.782245+0000",
+    "createdBy": "Abdulrahman Abuhashim",
+    "lastModifiedAt": "2026-11-23T17:49:35.724359+0000"
+  },
+  "provisioning_state": "Succeeded",
+  "public_network_access": "enabled",
+  "resourceGroup": "rg-dsai3202-abdulrahman-60301190",
+  "scoring_uri": "https://accident-severity-60301190.qatarcentral.inference.ml.azure.com/score",
+  "tags": {},
+  "traffic": {}
+}

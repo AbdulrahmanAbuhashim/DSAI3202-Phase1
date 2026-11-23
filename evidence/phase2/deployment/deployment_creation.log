@@ -1,0 +1,59 @@
+All traffic will be set to deployment blue once it has been provisioned.
+If you interrupt this command or it times out while waiting for the provisioning, you can try to set all the traffic to this deployment later once its has been provisioned.
+Check: endpoint accident-severity-60301190 exists
+Uploading deployment (0.01 MBs):   0%|          | 0/5586 [00:00<?, ?it/s]Uploading deployment (0.01 MBs):  37%|███▋      | 2068/5586 [00:00<00:00, 9080.45it/s]Uploading deployment (0.01 MBs): 100%|██████████| 5586/5586 [00:00<00:00, 23280.43it/s]
+
+
+........................................................................................................................................................{
+  "app_insights_enabled": false,
+  "code_configuration": {
+    "code": "/subscriptions/0b475409-9d7c-4dff-a07b-084eff651874/resourceGroups/rg-dsai3202-abdulrahman-60301190/providers/Microsoft.MachineLearningServices/workspaces/mlwdsai320260301190/codes/7ef16b81-167a-4c1e-bd3b-70568153b5e5/versions/1",
+    "scoring_script": "score.py"
+  },
+  "creation_context": {
+    "created_at": "2026-11-23T17:51:26.483662+00:00",
+    "created_by": "Abdulrahman Abuhashim",
+    "last_modified_at": "2026-11-23T17:51:26.483674+00:00"
+  },
+  "egress_public_network_access": "enabled",
+  "endpoint_name": "accident-severity-60301190",
+  "environment": "azureml:/subscriptions/0b475409-9d7c-4dff-a07b-084eff651874/resourceGroups/rg-dsai3202-abdulrahman-60301190/providers/Microsoft.MachineLearningServices/workspaces/mlwdsai320260301190/environments/CliV2AnonymousEnvironment/versions/b350b0d628ad54bf15524b85b659469abf3f034661ffd0c4e011c9704f1dca8e",
+  "environment_variables": {
+    "AML_APP_ROOT": "/var/azureml-app/deployment",
+    "AZUREML_ENTRY_SCRIPT": "score.py",
+    "AZUREML_MODEL_DIR": "/var/azureml-app/azureml-models/road-accident-severity/1"
+  },
+  "id": "/subscriptions/0b475409-9d7c-4dff-a07b-084eff651874/resourceGroups/rg-dsai3202-abdulrahman-60301190/providers/Microsoft.MachineLearningServices/workspaces/mlwdsai320260301190/onlineEndpoints/accident-severity-60301190/deployments/blue",
+  "instance_count": 1,
+  "instance_type": "Standard_DS3_v2",
+  "liveness_probe": {
+    "failure_threshold": 30,
+    "initial_delay": 10,
+    "period": 10,
+    "success_threshold": 1,
+    "timeout": 2
+  },
+  "model": "azureml:/subscriptions/0b475409-9d7c-4dff-a07b-084eff651874/resourceGroups/rg-dsai3202-abdulrahman-60301190/providers/Microsoft.MachineLearningServices/workspaces/mlwdsai320260301190/models/road-accident-severity/versions/1",
+  "name": "blue",
+  "properties": {
+    "AzureAsyncOperationUri": "https://management.azure.com/subscriptions/0b475409-9d7c-4dff-a07b-084eff651874/providers/Microsoft.MachineLearningServices/locations/qatarcentral/mfeOperationsStatus/odidp:ae2af604-e2f3-46ad-8bc9-a0b6a6e65b54:897042c0-ecb0-4d2c-82c8-fdb772c2f93f?api-version=2023-04-01-preview"
+  },
+  "provisioning_state": "Succeeded",
+  "readiness_probe": {
+    "failure_threshold": 30,
+    "initial_delay": 10,
+    "period": 10,
+    "success_threshold": 1,
+    "timeout": 2
+  },
+  "request_settings": {
+    "max_concurrent_requests_per_instance": 1,
+    "request_timeout_ms": 5000
+  },
+  "resourceGroup": "rg-dsai3202-abdulrahman-60301190",
+  "scale_settings": {
+    "type": "default"
+  },
+  "tags": {},
+  "type": "managed"
+}
