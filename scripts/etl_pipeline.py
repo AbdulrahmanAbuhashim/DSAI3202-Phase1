@@ -141,7 +141,9 @@ def main():
         print("Output:", published)
 
     except Exception:
-        shutil.rmtree(staging, ignore_errors=True)
+        # Keep the failed run files for checking errors.
+        print("ETL failed. Check the log and staging folder.")
+        print("Staging folder:", staging)
         raise
 
 

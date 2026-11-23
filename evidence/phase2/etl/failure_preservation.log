@@ -1,0 +1,8 @@
+ETL failed. Check the log and staging folder.
+Staging folder: /Users/abdulrahman/DSAI3202-Phase1/outputs/phase2_bad_input_test_02_staging
+Traceback (most recent call last):
+  File "/Users/abdulrahman/DSAI3202-Phase1/scripts/etl_pipeline.py", line 151, in <module>
+    main()
+  File "/Users/abdulrahman/DSAI3202-Phase1/scripts/etl_pipeline.py", line 62, in main
+    raise ValueError(f"Missing columns: {sorted(missing)}")
+ValueError: Missing columns: ['collision_severity']
