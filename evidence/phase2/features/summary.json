@@ -1,0 +1,14 @@
+{
+  "source": "projects/road-accident-severity/processed_v1/",
+  "version": "features_v1",
+  "files": 183,
+  "input_rows": 9116617,
+  "output_rows": 9116617,
+  "features": [
+    "hour",
+    "month",
+    "is_weekend",
+    "is_night",
+    "high_speed_road"
+  ]
+}
