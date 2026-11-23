@@ -1,0 +1,4 @@
+Accepted: 1
+Rejected: 3
+Rejection reasons: ['invalid_collision_severity', 'invalid_date', 'missing_collision_index']
+ETL REJECTION TEST PASSED
