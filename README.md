@@ -562,3 +562,82 @@ Azure upload and verification outputs are saved in:
 - `evidence/phase2/training/dataset_verification.log`
 
 The Azure files have matching sizes. Their exact contents can be checked against the SHA-256 manifest after download.
+
+### 13. Additional Model Experiment: Extra Trees
+
+After evaluating Gradient-Boosted Trees, I tested Extra Trees to improve accident severity prediction, particularly for Serious accidents.
+
+#### Validation Comparison
+
+| Metric | Gradient Boosting (v1) | Extra Trees (v2) |
+|---|---:|---:|
+| Accuracy | 0.6279 | 0.6750 |
+| Macro F1 | 0.3285 | 0.3660 |
+| Fatal F1 | 0.0778 | 0.0717 |
+| Serious F1 | 0.1152 | 0.2226 |
+
+Extra Trees achieved better validation accuracy and macro F1, and substantially improved Serious F1. However, Fatal F1 remained very low and was slightly worse than Gradient Boosting.
+
+Extra Trees was selected as the final deployed model based on validation macro F1. This additional experiment does not change the original Gradient-Boosting hypothesis outcome, which was not supported.
+
+#### Model Configuration
+
+- Algorithm: ExtraTreesClassifier
+- Trees: 150
+- Minimum samples per leaf: 5
+- Maximum features: 0.8
+- Class weighting: balanced
+- Random seed: 42
+- Training records: 420,386
+- Validation records: 20,713
+- Feature dataset: features_v1
+
+The model uses 20 input features and includes fitted preprocessing.
+
+#### Model Size and Compression
+
+The original Extra Trees model was approximately 1,185.6 MB. After joblib compression, the saved file was approximately 362.9 MB.
+
+Predictions from the compressed and original models matched for all 20,713 validation records. Compression did not change validation accuracy or macro F1.
+
+#### Azure Deployment Version 2
+
+The model was registered in Azure Machine Learning as `road-accident-severity:2`.
+
+The managed endpoint used:
+
+- Endpoint: `accident-severity-60301190`
+- Deployment: `green`
+- Compute: one Standard_DS3_v2 CPU instance
+- Scoring script: `deployment/score_v2.py`
+- Deployment configuration: `deployment/deployment_v2.yml`
+
+Online testing confirmed:
+
+| Test | Result |
+|---|---|
+| Valid prediction | Passed |
+| Invalid request | Missing fields reported |
+| Offline/online consistency | 10/10 matching predictions |
+| Average Azure CLI request time | 2.35 seconds |
+| Endpoint cleanup | Completed |
+
+The recorded latency includes Azure CLI and network overhead. It is not pure model inference latency.
+
+The endpoint was deleted after testing to avoid ongoing compute charges. Model versions 1 and 2 remain registered in Azure.
+
+#### Limitations
+
+The Extra Trees results are based on validation data. The previously inspected 2023–2025 test set was not used to report a new untouched final test result.
+
+Fatal accident prediction remains weak. The model is an academic prototype and should not be relied on for real-world road safety decisions.
+
+#### Evidence
+
+- `evidence/phase2/training/extra_trees_test.log`
+- `evidence/phase2/training/extra_trees_metrics.json`
+- `evidence/phase2/deployment/extra_trees_registration.log`
+- `evidence/phase2/deployment/deployment_v2_creation.log`
+- `evidence/phase2/deployment/prediction_comparison_v2.log`
+- `evidence/phase2/deployment/latency_v2.log`
+- `evidence/phase2/deployment/cleanup_v2.log`
