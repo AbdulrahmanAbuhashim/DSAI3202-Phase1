@@ -72,6 +72,24 @@ def main():
                 [not flag for flag in flags]
             ].copy()
 
+                # Save rejected records with their reasons
+            rejected_dir = staging / "rejected"
+            rejected_dir.mkdir(parents=True, exist_ok=True)
+
+            if len(rejected):
+                rejected.to_parquet(
+                    rejected_dir / f"invalid_{number:05d}.parquet",
+                    index=False
+                )
+
+            if len(duplicates):
+                duplicate_rows = duplicates.copy()
+                duplicate_rows["rejection_reason"] = "duplicate_collision_index"
+                duplicate_rows.to_parquet(
+                    rejected_dir / f"duplicates_{number:05d}.parquet",
+                    index=False
+                )
+
             total += len(batch)
             accepted_total += len(accepted)
             rejected_total += len(rejected) + len(duplicates)

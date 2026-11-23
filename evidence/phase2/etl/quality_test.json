@@ -1,0 +1,8 @@
+{
+  "total_rows": 500,
+  "accepted_rows": 496,
+  "rejected_rows": 4,
+  "rejection_rate": 0.008,
+  "threshold": 0.01,
+  "publication_allowed": true
+}

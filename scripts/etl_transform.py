@@ -38,5 +38,17 @@ def clean_batch(df):
 
     accepted = df.loc[valid_mask].copy()
     rejected = df.loc[~valid_mask].copy()
+    if not rejected.empty:
+        reasons = []
+        for _, row in rejected.iterrows():
+            errors = []
+            if pd.isna(row["collision_index"]) or not str(row["collision_index"]).strip():
+                errors.append("missing_collision_index")
+            if row["collision_severity"] not in [1, 2, 3]:
+                errors.append("invalid_collision_severity")
+            if pd.isna(row["date"]):
+                errors.append("invalid_date")
+            reasons.append(";".join(errors))
+        rejected["rejection_reason"] = reasons
 
     return accepted, rejected
