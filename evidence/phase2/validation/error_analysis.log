@@ -1,0 +1,21 @@
+ERROR ANALYSIS - GRADIENT-BOOSTED TREES
+Total wrong predictions: 6135
+
+Performance by urban/rural area:
+1 - rows: 10224 - macro F1: 0.3079
+2 - rows: 4969 - macro F1: 0.2393
+
+Example incorrect predictions:
+collision_index  collision_severity  prediction  speed_limit weather_conditions
+  2023501342169                   3           1         20.0                  1
+  2023010430943                   3           1         30.0                  1
+  2023421292885                   3           1         70.0                  1
+  2023031386949                   2           1         60.0                  1
+  2023430077869                   3           1         60.0                  1
+  2023131393367                   2           3         30.0                  2
+  2023141316035                   3           1         60.0                  1
+  2023141376120                   2           1         60.0                  1
+  2023411399582                   3           1         60.0                  1
+  2023430013294                   3           1         60.0                  2
+
+ERROR ANALYSIS COMPLETED

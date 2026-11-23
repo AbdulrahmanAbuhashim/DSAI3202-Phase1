@@ -1,0 +1,38 @@
+
+Model: Logistic Regression
+Accuracy: 0.6055
+Macro F1: 0.3019
+              precision    recall  f1-score   support
+
+           1       0.04      0.53      0.07       236
+           2       0.32      0.03      0.05      3682
+           3       0.77      0.80      0.78     11275
+
+    accuracy                           0.61     15193
+   macro avg       0.38      0.45      0.30     15193
+weighted avg       0.65      0.61      0.59     15193
+
+Confusion matrix:
+[[ 124    9  103]
+ [ 978  103 2601]
+ [2090  212 8973]]
+
+Model: Gradient-Boosted Trees
+Accuracy: 0.5962
+Macro F1: 0.3028
+              precision    recall  f1-score   support
+
+           1       0.04      0.56      0.07       236
+           2       0.29      0.03      0.06      3682
+           3       0.77      0.78      0.78     11275
+
+    accuracy                           0.60     15193
+   macro avg       0.37      0.46      0.30     15193
+weighted avg       0.65      0.60      0.59     15193
+
+Confusion matrix:
+[[ 132   12   92]
+ [1068  120 2494]
+ [2190  279 8806]]
+
+FINAL TEST EVALUATION COMPLETED

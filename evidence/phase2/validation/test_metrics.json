@@ -1,0 +1,10 @@
+{
+  "Logistic Regression": {
+    "accuracy": 0.6055,
+    "macro_f1": 0.3019
+  },
+  "Gradient-Boosted Trees": {
+    "accuracy": 0.5962,
+    "macro_f1": 0.3028
+  }
+}
