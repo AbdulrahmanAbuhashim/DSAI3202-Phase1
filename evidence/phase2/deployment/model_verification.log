@@ -1,0 +1,11 @@
+{
+  "Name": "road-accident-severity",
+  "Tags": {
+    "code_commit": "0b787c22d81143f2d5d0e477fd85be792c40ac4e",
+    "data_version": "features_v1",
+    "training_source": "local",
+    "validation_macro_f1": "0.3285"
+  },
+  "Type": "custom_model",
+  "Version": "1"
+}

@@ -1,0 +1,29 @@
+Uploading improved_candidate.joblib (< 1 MB): 0.00B [00:00, ?B/s]Uploading improved_candidate.joblib (< 1 MB): 100%|██████████| 428k/428k [00:00<00:00, 5.84MB/s]
+
+
+Class DeploymentTemplateReferenceSchema: This is an experimental class, and may change at any time. Please see https://aka.ms/azuremlexperimental for more information.
+{
+  "creation_context": {
+    "created_at": "2026-11-23T12:10:02.103943+00:00",
+    "created_by": "Abdulrahman Abuhashim",
+    "created_by_type": "CreatedByType.USER",
+    "last_modified_at": "2026-11-23T12:10:02.103943+00:00",
+    "last_modified_by": "Abdulrahman Abuhashim",
+    "last_modified_by_type": "CreatedByType.USER"
+  },
+  "description": "Gradient Boosting model for UK road accident severity",
+  "id": "azureml:/subscriptions/0b475409-9d7c-4dff-a07b-084eff651874/resourceGroups/rg-dsai3202-abdulrahman-60301190/providers/Microsoft.MachineLearningServices/workspaces/mlwdsai320260301190/models/road-accident-severity/versions/1",
+  "name": "road-accident-severity",
+  "path": "azureml://subscriptions/0b475409-9d7c-4dff-a07b-084eff651874/resourceGroups/rg-dsai3202-abdulrahman-60301190/workspaces/mlwdsai320260301190/datastores/workspaceblobstore/paths/LocalUpload/96f616901b111fde9b029d0f01e548d6378a2e4ccf74674824fc6232457abe4a/improved_candidate.joblib",
+  "properties": {},
+  "resourceGroup": "rg-dsai3202-abdulrahman-60301190",
+  "stage": "Development",
+  "tags": {
+    "code_commit": "0b787c22d81143f2d5d0e477fd85be792c40ac4e",
+    "data_version": "features_v1",
+    "training_source": "local",
+    "validation_macro_f1": "0.3285"
+  },
+  "type": "custom_model",
+  "version": "1"
+}

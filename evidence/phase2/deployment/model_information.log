@@ -1,0 +1,14 @@
+Git commit:
+0b787c22d81143f2d5d0e477fd85be792c40ac4e
+
+Python and library versions:
+Python: 3.12.7
+scikit-learn: 1.5.1
+pandas: 2.2.2
+joblib: 1.4.2
+numpy: 1.26.4
+
+Model:
+improved_candidate.joblib
+Data version: features_v1
+Validation macro F1: 0.3285
