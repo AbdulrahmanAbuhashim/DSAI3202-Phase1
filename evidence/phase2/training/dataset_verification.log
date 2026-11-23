@@ -1,0 +1,5 @@
+Name                                                              Size
+----------------------------------------------------------------  --------
+projects/road-accident-severity/model_data_v1/test.parquet        1282104
+projects/road-accident-severity/model_data_v1/train.parquet       21740022
+projects/road-accident-severity/model_data_v1/validation.parquet  1765775

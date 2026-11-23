@@ -1,0 +1,21 @@
+{
+  "sampling_method": "collision_index hash modulo 20 equals 0",
+  "feature_version": "features_v1",
+  "splits": {
+    "train": {
+      "file": "data/model_data/train.parquet",
+      "size_bytes": 21740022,
+      "sha256": "7b385ffefa504c58a25245872eaafbe4711f3dd34a81ac4264b64a84434145b1"
+    },
+    "validation": {
+      "file": "data/model_data/validation.parquet",
+      "size_bytes": 1765775,
+      "sha256": "780fa28c43f050993a3b8bec5d1b75f85571188401c70838b4d3884f0582f529"
+    },
+    "test": {
+      "file": "data/model_data/test.parquet",
+      "size_bytes": 1282104,
+      "sha256": "5c3915650f3578fb07549ee3cc8c3a4dd0903f4d721ee6841296de8341eeaa08"
+    }
+  }
+}

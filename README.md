@@ -312,3 +312,253 @@ Large datasets are stored in Azure, not GitHub.
 | ChatGPT | Coding and ETL troubleshooting assistance | Suggested code and solutions | Executed and tested the scripts on Azure |
 | ChatGPT | EDA and feature-engineering assistance | Suggested analysis and feature code | Generated outputs and checked results |
 | ChatGPT | Documentation assistance | Suggested README content | Reviewed the documentation against project results |
+
+---
+
+## Phase 2: Modeling, Validation and Deployment
+
+### 7. Model and Evaluation
+
+The project predicts road accident severity using UK collision records. The target classes are:
+
+- 1: Fatal
+- 2: Serious
+- 3: Slight
+
+Two machine learning algorithms were compared:
+
+- Logistic Regression as the baseline.
+- Gradient-Boosted Trees as the candidate model.
+
+The models use road, weather, lighting, location, and time features. Information that would only be known after an accident, such as the number of casualties, was excluded to avoid data leakage.
+
+#### Training and Validation
+
+A deterministic sample of approximately 5% was selected using collision IDs. The split was based on time:
+
+| Dataset | Years | Records |
+|---|---|---:|
+| Training | 1979–2018 | 420,386 |
+| Validation | 2019–2022 | 20,713 |
+| Original test | 2023–2025 | 15,193 |
+
+Missing values and categorical encoding were handled inside the model pipelines. Preprocessing was fitted using training data only.
+
+#### Validation Results
+
+| Model | Accuracy | Macro F1 |
+|---|---:|---:|
+| Logistic Regression | 0.6292 | 0.3055 |
+| Original Gradient-Boosted Trees | 0.6204 | 0.3071 |
+| Improved Gradient-Boosted Trees | 0.6279 | 0.3285 |
+
+The improved Gradient-Boosted Trees model was selected because it achieved the highest validation macro F1.
+
+The improvement experiment tested three configurations. The balanced configuration, using 100 boosting iterations and 31 maximum leaf nodes, performed best.
+
+#### Hypothesis Outcome
+
+The hypothesis required Gradient-Boosted Trees to improve macro F1 by at least 0.05 compared with Logistic Regression.
+
+The improved candidate achieved 0.3285 compared with the baseline's 0.3055, a difference of 0.0230.
+
+Therefore, the hypothesis was not supported by the validation results.
+
+#### Evaluation Limitations
+
+The original models were evaluated on the 2023–2025 test records before the improvement experiment. The original candidate achieved 0.3028 test macro F1, compared with 0.3019 for Logistic Regression.
+
+Because the test results were already inspected before improving the candidate, this test set is not presented as an untouched final evaluation of the improved model.
+
+The model also struggles to distinguish minority severity classes, especially Serious accidents. Its predictions should not be treated as reliable safety decisions.
+
+#### Selected Model
+
+- Algorithm: HistGradientBoostingClassifier
+- Training source: Local Python environment
+- Azure registered model: road-accident-severity
+- Registered version: 1
+- Data version: features_v1
+- Random seed: 42
+- Validation macro F1: 0.3285
+- Model registration code commit: 0b787c22d81143f2d5d0e477fd85be792c40ac4e
+
+The registered model includes its fitted preprocessing pipeline.
+
+
+### 8. Traceability and Deployment
+
+#### Model Traceability
+
+The selected model is registered in Azure Machine Learning.
+
+| Item | Value |
+|---|---|
+| Workspace | mlwdsai320260301190 |
+| Resource group | rg-dsai3202-abdulrahman-60301190 |
+| Region | Qatar Central |
+| Registered model | road-accident-severity:1 |
+| Feature version | features_v1 |
+| Git commit at registration | 0b787c2 |
+| Training source | Local Mac |
+| Validation macro F1 | 0.3285 |
+
+The registered model contains the trained classifier and fitted preprocessing pipeline. The training and improvement scripts are in the `scripts/` directory.
+
+Python and dependency versions are recorded in `evidence/phase2/deployment/model_information.log`.
+
+#### Deployment Configuration
+
+The project uses an Azure Machine Learning managed online endpoint.
+
+| Setting | Value |
+|---|---|
+| Endpoint | accident-severity-60301190 |
+| Deployment | blue |
+| Model | road-accident-severity:1 |
+| VM size | Standard_DS3_v2 |
+| Instance count | 1 |
+| Authentication | Key |
+| Traffic | 100% to blue |
+
+Deployment files are located in `deployment/`:
+
+- `score.py`: Loads the registered model and handles requests.
+- `conda.yml`: Defines the Python environment.
+- `endpoint.yml`: Defines the endpoint.
+- `deployment.yml`: Defines the model deployment.
+- `sample_request.json`: Example valid request.
+- `invalid_request.json`: Example request with missing fields.
+
+#### Repeatable Deployment Steps
+
+The following commands recreate the endpoint and model deployment:
+
+```bash
+az ml online-endpoint create \
+  --file deployment/endpoint.yml \
+  --workspace-name mlwdsai320260301190 \
+  --resource-group rg-dsai3202-abdulrahman-60301190
+
+az ml online-deployment create \
+  --file deployment/deployment.yml \
+  --all-traffic \
+  --workspace-name mlwdsai320260301190 \
+  --resource-group rg-dsai3202-abdulrahman-60301190
+```
+
+Deployment requires access to the Azure workspace and sufficient VM quota.
+
+#### Prediction Input and Output
+
+The endpoint accepts JSON containing a `rows` list. Each row must contain all 16 model features.
+
+Example request files are available in `deployment/`.
+
+The response returns a `predictions` list and a `model_version` field.
+
+Severity values:
+
+- 1: Fatal
+- 2: Serious
+- 3: Slight
+
+Requests with missing required fields return an error message. In the current implementation, validation errors are returned in JSON and are not guaranteed to use a non-200 HTTP status code.
+
+### 9. Verification and Resource Use
+
+#### Deployment Tests
+
+The deployment was tested using Azure Machine Learning.
+
+| Test | Result |
+|---|---|
+| Model registration | Passed |
+| Endpoint creation | Passed |
+| Deployment provisioning | Succeeded |
+| Valid online prediction | Passed |
+| Invalid request | Missing fields reported |
+| Offline vs online comparison | 10/10 matching predictions |
+
+The offline and online predictions matched exactly for the ten tested validation records.
+
+#### Response Time
+
+Five online requests were measured through Azure CLI.
+
+| Request | Time |
+|---|---:|
+| 1 | 3.09 seconds |
+| 2 | 2.43 seconds |
+| 3 | 2.51 seconds |
+| 4 | 2.42 seconds |
+| 5 | 2.50 seconds |
+| Average | 2.59 seconds |
+
+These results include CLI startup and network overhead. They do not represent pure model inference latency.
+
+#### Resource Use and Cleanup
+
+The deployment used one Standard_DS3_v2 CPU instance.
+
+This configuration was selected because the saved model is small and does not require GPU inference. The managed endpoint was deleted after testing to avoid unnecessary running costs.
+
+The registered Azure model was retained for future deployment. Cleanup evidence is saved in:
+
+`evidence/phase2/deployment/cleanup_verification.log`
+
+#### Supporting Evidence
+
+Training, validation, ETL, feature engineering, registration, deployment, testing, and cleanup evidence are organized under:
+
+`evidence/phase2/`
+
+
+### 10. Contributions and Reused Code
+
+This is an individual project. I managed the Phase 2 work, including data processing, model development, evaluation, Azure deployment, testing, and documentation.
+
+The implementation uses approaches covered in DSAI3202 labs, adapted to the UK road accident severity dataset.
+
+### 11. Phase 2 AI Use
+
+I managed the project and made the final technical decisions. ChatGPT supported the development process through code suggestions, troubleshooting, and documentation assistance. I executed the scripts, reviewed the outputs, and verified the results.
+
+| Tool | Request | Response | My Changes |
+|---|---|---|---|
+| ChatGPT | ETL and data preparation assistance | Suggested Python changes and validation checks | Applied the changes and tested data quality |
+| ChatGPT | Model development assistance | Suggested training, evaluation, and improvement scripts | Ran the experiments, compared metrics, and selected the model |
+| ChatGPT | Azure deployment guidance | Suggested CLI commands and configuration files | Registered, deployed, and tested the model in Azure |
+| ChatGPT | Documentation support | Suggested README content and structure | Reviewed and checked the documentation against recorded results |
+
+All reported model results and deployment outcomes were obtained from executed experiments and Azure operations.
+
+
+### 12. Dataset Reproducibility
+
+The exact sampled datasets used for modeling are stored in Azure Blob Storage.
+
+- Storage account: `amazonlake60301190`
+- Container: `curated`
+- Dataset folder: `projects/road-accident-severity/model_data_v1/`
+
+| Dataset | Azure blob |
+|---|---|
+| Training | `train.parquet` |
+| Validation | `validation.parquet` |
+| Test | `test.parquet` |
+
+These are paths relative to the dataset folder above.
+
+The datasets were generated using `scripts/prepare_training_data.py` from the `features_v1` feature dataset. Sampling selects collision IDs whose pandas hash is divisible by 20, producing approximately 5% of records.
+
+The exact dataset file sizes and SHA-256 checksums are saved in:
+
+`evidence/phase2/training/dataset_manifest.json`
+
+Azure upload and verification outputs are saved in:
+
+- `evidence/phase2/training/dataset_upload.log`
+- `evidence/phase2/training/dataset_verification.log`
+
+The Azure files have matching sizes. Their exact contents can be checked against the SHA-256 manifest after download.
