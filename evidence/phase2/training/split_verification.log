@@ -1,0 +1,6 @@
+Training rows: 420386
+Validation rows: 20713
+Testing rows: 15193
+Year ranges: PASSED
+No overlapping accident IDs: PASSED
+DATA SPLIT VERIFICATION PASSED
