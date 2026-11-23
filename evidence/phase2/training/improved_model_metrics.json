@@ -1,0 +1,16 @@
+{
+  "model": "Improved Gradient-Boosted Trees",
+  "data_version": "features_v1",
+  "training_rows": 420386,
+  "validation_rows": 20713,
+  "training_years": "1979-2018",
+  "validation_years": "2019-2022",
+  "random_state": 42,
+  "max_iter": 100,
+  "max_leaf_nodes": 31,
+  "class_weight": "balanced",
+  "validation_accuracy": 0.6279,
+  "validation_macro_f1": 0.3285,
+  "baseline_macro_f1": 0.3055,
+  "hypothesis_improvement_required": 0.05
+}

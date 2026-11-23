@@ -1,0 +1,24 @@
+
+Experiment: balanced
+Accuracy: 0.6279
+Macro F1: 0.3285
+Fatal F1: 0.0778
+Serious F1: 0.1152
+
+Experiment: moderate_weights
+Accuracy: 0.777
+Macro F1: 0.3004
+Fatal F1: 0.0099
+Serious F1: 0.0162
+
+Experiment: smaller_trees
+Accuracy: 0.777
+Macro F1: 0.2945
+Fatal F1: 0.0052
+Serious F1: 0.0033
+
+Best experiment: balanced
+Best validation macro F1: 0.3285
+Previous candidate macro F1: 0.3071
+Improvement: 0.0214
+IMPROVEMENT EXPERIMENT COMPLETED
