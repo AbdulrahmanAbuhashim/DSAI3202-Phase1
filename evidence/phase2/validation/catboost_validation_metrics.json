@@ -1,0 +1,42 @@
+{
+  "model": "CatBoost",
+  "dataset": "validation_2019_2022",
+  "data_version": "model_data_v1",
+  "rows": 20713,
+  "trees": 464,
+  "accuracy": 0.7194515521653068,
+  "macro_f1": 0.3842218583281983,
+  "classification_report": {
+    "Fatal": {
+      "precision": 0.07038123167155426,
+      "recall": 0.14076246334310852,
+      "f1-score": 0.093841642228739,
+      "support": 341.0
+    },
+    "Serious": {
+      "precision": 0.305532617671346,
+      "recall": 0.1748169147176943,
+      "f1-score": 0.22238918106686703,
+      "support": 4233.0
+    },
+    "Slight": {
+      "precision": 0.8015219490033506,
+      "recall": 0.8745275419790569,
+      "f1-score": 0.836434751688989,
+      "support": 16139.0
+    },
+    "accuracy": 0.7194515521653068,
+    "macro avg": {
+      "precision": 0.3924785994487503,
+      "recall": 0.39670230667995326,
+      "f1-score": 0.3842218583281983,
+      "support": 20713.0
+    },
+    "weighted avg": {
+      "precision": 0.6881225464958183,
+      "recall": 0.7194515521653068,
+      "f1-score": 0.6987203138591532,
+      "support": 20713.0
+    }
+  }
+}
