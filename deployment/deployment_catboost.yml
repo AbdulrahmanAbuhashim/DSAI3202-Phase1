@@ -1,0 +1,17 @@
+$schema: https://azuremlschemas.azureedge.net/latest/managedOnlineDeployment.schema.json
+
+name: catboost
+endpoint_name: accident-severity-60301190
+
+model: azureml:road-accident-severity:3
+
+code_configuration:
+  code: .
+  scoring_script: score_catboost.py
+
+environment:
+  image: mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu22.04:latest
+  conda_file: conda_catboost.yml
+
+instance_type: Standard_DS3_v2
+instance_count: 1
