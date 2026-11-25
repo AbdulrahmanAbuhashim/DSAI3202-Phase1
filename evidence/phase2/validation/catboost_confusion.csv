@@ -1,0 +1,4 @@
+,Predicted Fatal,Predicted Serious,Predicted Slight
+Actual Fatal,48,95,198
+Actual Serious,196,740,3297
+Actual Slight,438,1587,14114
