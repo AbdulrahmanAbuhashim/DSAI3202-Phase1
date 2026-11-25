@@ -641,3 +641,166 @@ Fatal accident prediction remains weak. The model is an academic prototype and s
 - `evidence/phase2/deployment/prediction_comparison_v2.log`
 - `evidence/phase2/deployment/latency_v2.log`
 - `evidence/phase2/deployment/cleanup_v2.log`
+
+## 14. CatBoost Gradient-Boosted Trees Improvement
+
+### Purpose
+The original project hypothesis compares Gradient-Boosted Trees with
+Logistic Regression using macro F1-score. CatBoost was tested as an
+additional gradient-boosting algorithm to improve severity prediction.
+
+### Model Experiments
+Six CatBoost experiments were completed using the existing training
+and validation data. The 2023–2025 test dataset was not used for
+CatBoost model selection.
+
+| Experiment | Change | Validation Macro F1 |
+|---|---|---|
+| 1 | Initial CatBoost with moderate class weights | 0.2920 |
+| 2 | Stronger class weights | 0.3730 |
+| 3 | Different class weighting | 0.3415 |
+| 4 | Added five road and location features | 0.3818 |
+| 5 | Trained for 500 iterations | 0.3829 |
+| 6 | Used training data from 2000–2018 | 0.3763 |
+
+Experiment 5 achieved the best completed model result. Its saved
+500-tree model was then reduced to the best recorded checkpoint
+of 464 trees.
+
+### Selected CatBoost Model
+- Algorithm: CatBoost Gradient-Boosted Trees
+- Registered Azure model: `road-accident-severity:3`
+- Trees: 464
+- Features: 21 (15 categorical, 6 numeric)
+- Random seed: 42
+- Training: 1979–2018, 420,386 sampled records
+- Validation: 2019–2022, 20,713 sampled records
+- Data version: `model_data_v1`
+- Validation accuracy: 0.7195
+- Validation macro F1: 0.3842
+
+The model and its feature preprocessing configuration are stored in:
+- `outputs/models/catboost_best_checkpoint.cbm`
+- `outputs/models/catboost_config.json`
+
+The registered Azure model contains both files.
+
+### Model Comparison
+
+| Model | Validation Macro F1 |
+|---|---|
+| Logistic Regression | 0.3055 |
+| Improved Gradient Boosting | 0.3285 |
+| Extra Trees | 0.3660 |
+| CatBoost (464 trees) | 0.3842 |
+
+CatBoost achieved the highest validation macro F1 among these models.
+It improved over Logistic Regression by 0.0787.
+
+The original directional hypothesis was supported by the observed
+validation comparison. The stricter +0.05 improvement target was
+introduced during Phase 2 and was also exceeded on validation.
+
+These are validation results, not an unbiased independent final
+holdout comparison.
+
+### Validation and Limitations
+The training and validation datasets were separated by year.
+The preprocessing values were calculated using training data only.
+Outcome-related columns were excluded from model inputs.
+
+The model still struggles to classify Fatal and Serious accidents.
+CatBoost was selected using repeated validation experiments.
+The 2023–2025 test dataset had been inspected in earlier project work,
+so it cannot be described as a completely untouched final holdout
+for the new CatBoost model.
+
+### Azure Registration and Deployment
+- Workspace: `mlwdsai320260301190`
+- Resource group: `rg-dsai3202-abdulrahman-60301190`
+- Endpoint: `accident-severity-60301190`
+- Deployment: `catboost`
+- Model: `road-accident-severity:3`
+- Instance: `Standard_DS3_v2`
+
+Deployment files:
+- `deployment/endpoint_catboost.yml`
+- `deployment/deployment_catboost.yml`
+- `deployment/score_catboost.py`
+- `deployment/conda_catboost.yml`
+
+The endpoint accepts a JSON object with an `input_data` list.
+Each record must contain the 21 documented model features.
+The output includes predicted severity labels and the model version.
+
+### Azure Verification
+- Managed deployment provisioning: Succeeded
+- Valid input: Passed
+- Invalid input: Missing features detected
+- Offline/deployed consistency: 10/10 predictions matched
+- Client-observed latency target: 5 seconds
+- Average latency across five requests: 2.42 seconds
+- Maximum observed latency: 3.65 seconds
+
+Client-observed latency includes Azure CLI execution,
+network communication and inference.
+
+Detailed evidence:
+`evidence/phase2/deployment/catboost_verification.md`
+
+### Reproducibility
+The CatBoost experiments and their results are preserved in
+`scripts/train_catboost*.py` and
+`evidence/phase2/training/catboost_experiment_*`.
+
+The selected model was trained with seed 42. Its feature order,
+categorical columns, numeric imputation values and label mapping
+are preserved in `catboost_config.json`.
+
+CatBoost version 1.2.10 is specified in
+`deployment/conda_catboost.yml`.
+
+The selected checkpoint is registered as Azure model version 3.
+The repository commit used for deployment should be recorded
+with the final submitted Git commit or release.
+
+### Cleanup and Redeployment
+The managed deployment uses billable Azure compute.
+
+After saving evidence, the endpoint may be deleted to stop compute
+charges. The registered model and deployment configuration remain
+available for redeployment.
+
+To recreate the endpoint:
+
+```bash
+az ml online-endpoint create \
+  --file deployment/endpoint_catboost.yml \
+  --resource-group rg-dsai3202-abdulrahman-60301190 \
+  --workspace-name mlwdsai320260301190
+```
+
+To recreate the deployment:
+
+```bash
+az ml online-deployment create \
+  --file deployment/deployment_catboost.yml \
+  --resource-group rg-dsai3202-abdulrahman-60301190 \
+  --workspace-name mlwdsai320260301190 \
+  --all-traffic
+```
+
+The endpoint must be running during the D2L assessment window
+and the assigned final presentation.
+
+### AI Use
+
+| Tool | Request | Response | Changes Made |
+|---|---|---|---|
+| ChatGPT | Explore CatBoost configurations | Suggested training parameters and class-weight options | Ran six experiments and compared validation results |
+| ChatGPT | Assist with Python model scripts | Provided training and evaluation code examples | Used the project features, executed the scripts, and verified outputs |
+| ChatGPT | Explain evaluation metrics | Explained macro F1 and classification results | Reviewed model performance and selected the best checkpoint |
+| ChatGPT | Troubleshoot Azure deployment | Suggested scoring code, configuration, and troubleshooting steps | Registered the model and tested valid inputs, invalid inputs, and prediction consistency |
+| ChatGPT | Assist with technical documentation | Suggested documentation structure and wording | Checked reported results against experiment and deployment evidence |
+
+All reported metrics come from executed experiments on the project dataset. Model performance and Azure deployment were verified using the recorded results.
