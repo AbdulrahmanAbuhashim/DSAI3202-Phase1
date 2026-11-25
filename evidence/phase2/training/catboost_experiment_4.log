@@ -1,0 +1,37 @@
+Training rows: 420386
+Validation rows: 20713
+Features: 21
+0:	learn: 0.3709276	test: 0.3817516	best: 0.3817516 (0)	total: 998ms	remaining: 9m 57s
+Stopped by overfitting detector  (70 iterations wait)
+
+bestTest = 0.3817516109
+bestIteration = 0
+
+Shrink model to first 1 iterations.
+
+===== CATBOOST RESULTS =====
+Accuracy: 0.7126
+Macro F1: 0.3818
+
+CLASSIFICATION REPORT
+              precision    recall  f1-score   support
+
+       Fatal       0.06      0.15      0.09       341
+     Serious       0.30      0.18      0.23      4233
+      Slight       0.80      0.86      0.83     16139
+
+    accuracy                           0.71     20713
+   macro avg       0.39      0.40      0.38     20713
+weighted avg       0.69      0.71      0.70     20713
+
+
+CONFUSION MATRIX
+[[   51    90   200]
+ [  221   757  3255]
+ [  542  1645 13952]]
+
+Previous Gradient Boosting: 0.3285
+Previous Extra Trees: 0.3660
+Target: Above 0.5000
+
+EXPERIMENT COMPLETED

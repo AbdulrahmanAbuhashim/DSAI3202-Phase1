@@ -1,0 +1,43 @@
+{
+  "model": "CatBoost",
+  "experiment": 3,
+  "data_version": "model_data_v1",
+  "training_rows": 420386,
+  "validation_rows": 20713,
+  "features": [
+    "hour",
+    "month",
+    "is_weekend",
+    "is_night",
+    "speed_limit",
+    "high_speed_road",
+    "road_type",
+    "light_conditions",
+    "weather_conditions",
+    "road_surface_conditions",
+    "urban_or_rural_area",
+    "junction_detail",
+    "first_road_class",
+    "junction_control",
+    "pedestrian_crossing",
+    "special_conditions_at_site"
+  ],
+  "numeric_medians": {
+    "hour": 15.0,
+    "month": 7.0,
+    "is_weekend": 0.0,
+    "is_night": 0.0,
+    "speed_limit": 30.0,
+    "high_speed_road": 0.0
+  },
+  "class_weights": {
+    "1": 15,
+    "2": 7,
+    "3": 1
+  },
+  "random_seed": 42,
+  "best_iteration": 0,
+  "accuracy": 0.5849,
+  "macro_f1": 0.3415,
+  "evaluation": "validation only"
+}

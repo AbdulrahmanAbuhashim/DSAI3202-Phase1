@@ -1,0 +1,38 @@
+Training rows: 164174
+Validation rows: 20713
+Features: 21
+0:	learn: 0.3290089	test: 0.3178638	best: 0.3178638 (0)	total: 305ms	remaining: 1m 31s
+100:	learn: 0.3887550	test: 0.3653591	best: 0.3656333 (99)	total: 30.8s	remaining: 1m
+200:	learn: 0.3949804	test: 0.3711046	best: 0.3711046 (200)	total: 1m	remaining: 30s
+299:	learn: 0.4032187	test: 0.3763161	best: 0.3776336 (286)	total: 1m 35s	remaining: 0us
+
+bestTest = 0.3776336346
+bestIteration = 286
+
+
+===== CATBOOST RESULTS =====
+Accuracy: 0.7291
+Macro F1: 0.3763
+
+CLASSIFICATION REPORT
+              precision    recall  f1-score   support
+
+       Fatal       0.06      0.12      0.08       341
+     Serious       0.31      0.15      0.20      4233
+      Slight       0.80      0.89      0.84     16139
+
+    accuracy                           0.73     20713
+   macro avg       0.39      0.39      0.38     20713
+weighted avg       0.69      0.73      0.70     20713
+
+
+CONFUSION MATRIX
+[[   42    80   219]
+ [  193   623  3417]
+ [  414  1289 14436]]
+
+Previous Gradient Boosting: 0.3285
+Previous Extra Trees: 0.3660
+Target: Above 0.5000
+
+EXPERIMENT COMPLETED
