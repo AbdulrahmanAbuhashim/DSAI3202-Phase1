@@ -358,11 +358,13 @@ The improvement experiment tested three configurations. The balanced configurati
 
 #### Hypothesis Outcome
 
-The hypothesis required Gradient-Boosted Trees to improve macro F1 by at least 0.05 compared with Logistic Regression.
+The original hypothesis predicted that Gradient-Boosted Trees would achieve a higher macro F1-score than Logistic Regression. It did not specify a minimum improvement of 0.05.
 
-The improved candidate achieved 0.3285 compared with the baseline's 0.3055, a difference of 0.0230.
+The earlier HistGradientBoosting experiment achieved 0.3285 compared with the Logistic Regression baseline of 0.3055, an improvement of 0.0230.
 
-Therefore, the hypothesis was not supported by the validation results.
+The later selected CatBoost model achieved a validation macro F1 of 0.3842, an improvement of 0.0787 over the same baseline. Therefore, the observed validation results support the original directional hypothesis and exceed the additional +0.05 target introduced during Phase 2.
+
+These conclusions are based on validation results. An independent, untouched final holdout comparison remains unresolved.
 
 #### Evaluation Limitations
 
@@ -372,7 +374,7 @@ Because the test results were already inspected before improving the candidate, 
 
 The model also struggles to distinguish minority severity classes, especially Serious accidents. Its predictions should not be treated as reliable safety decisions.
 
-#### Selected Model
+#### Selected Model (Original Phase 2 Candidate)
 
 - Algorithm: HistGradientBoostingClassifier
 - Training source: Local Python environment
@@ -388,7 +390,7 @@ The registered model includes its fitted preprocessing pipeline.
 
 ### 8. Traceability and Deployment
 
-#### Model Traceability
+#### Model Traceability (Original Version 1)
 
 The selected model is registered in Azure Machine Learning.
 
