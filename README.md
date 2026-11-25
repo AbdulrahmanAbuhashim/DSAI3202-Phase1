@@ -795,18 +795,6 @@ az ml online-deployment create \
 The endpoint must be running during the D2L assessment window
 and the assigned final presentation.
 
-### AI Use
-
-| Tool | Request | Response | Changes Made |
-|---|---|---|---|
-| ChatGPT | Explore CatBoost configurations | Suggested training parameters and class-weight options | Ran six experiments and compared validation results |
-| ChatGPT | Assist with Python model scripts | Provided training and evaluation code examples | Used the project features, executed the scripts, and verified outputs |
-| ChatGPT | Explain evaluation metrics | Explained macro F1 and classification results | Reviewed model performance and selected the best checkpoint |
-| ChatGPT | Troubleshoot Azure deployment | Suggested scoring code, configuration, and troubleshooting steps | Registered the model and tested valid inputs, invalid inputs, and prediction consistency |
-| ChatGPT | Assist with technical documentation | Suggested documentation structure and wording | Checked reported results against experiment and deployment evidence |
-
-All reported metrics come from executed experiments on the project dataset. Model performance and Azure deployment were verified using the recorded results.
-
 ### Simplified Azure Demonstration
 
 For the live presentation, a simplified input mode was added to the
@@ -847,3 +835,15 @@ Deployment files:
 - `deployment/score_catboost_demo.py`
 - `deployment/catboost_demo_defaults.json`
 - `deployment/deployment_catboost_demo.yml`
+
+### AI Use
+
+| Tool | Request | Response | Changes Made |
+|---|---|---|---|
+| ChatGPT | Explore CatBoost configurations | Suggested training parameters and class-weight options | Ran six experiments and compared validation results |
+| ChatGPT | Assist with Python model scripts | Provided training and evaluation code examples | Used the project features, executed the scripts, and verified outputs |
+| ChatGPT | Explain evaluation metrics | Explained macro F1 and classification results | Reviewed model performance and selected the best checkpoint |
+| ChatGPT | Troubleshoot Azure deployment | Suggested scoring code, configuration, and troubleshooting steps | Registered the model and tested valid inputs, invalid inputs, and prediction consistency |
+| ChatGPT | Assist with technical documentation | Suggested documentation structure and wording | Checked reported results against experiment and deployment evidence |
+
+All reported metrics come from executed experiments on the project dataset. Model performance and Azure deployment were verified using the recorded results.
