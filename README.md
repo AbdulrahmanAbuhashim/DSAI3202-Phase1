@@ -806,3 +806,44 @@ and the assigned final presentation.
 | ChatGPT | Assist with technical documentation | Suggested documentation structure and wording | Checked reported results against experiment and deployment evidence |
 
 All reported metrics come from executed experiments on the project dataset. Model performance and Azure deployment were verified using the recorded results.
+
+### Simplified Azure Demonstration
+
+For the live presentation, a simplified input mode was added to the
+CatBoost scoring script.
+
+The demonstration accepts four user-provided fields:
+
+| Feature | Meaning |
+|---|---|
+| speed_limit | UK road speed limit in mph |
+| hour | Accident hour, from 0 to 23 |
+| weather_conditions | 1 = Fine, 2 = Rain |
+| light_conditions | 1 = Daylight, 4 = Darkness with lights lit |
+
+Example request:
+
+    {
+      "demo_input": {
+        "speed_limit": 60,
+        "hour": 14,
+        "weather_conditions": "1",
+        "light_conditions": "1"
+      }
+    }
+
+The system automatically calculates `is_night` and `high_speed_road`.
+The remaining features use documented training-data defaults stored
+in `deployment/catboost_demo_defaults.json`.
+
+The simplified interface is intended for demonstration purposes.
+Its prediction depends partly on assumed values and should not be
+interpreted as a fully specified accident scenario.
+
+The original 21-feature input interface remains supported and was
+verified after deploying the simplified scoring script.
+
+Deployment files:
+- `deployment/score_catboost_demo.py`
+- `deployment/catboost_demo_defaults.json`
+- `deployment/deployment_catboost_demo.yml`
